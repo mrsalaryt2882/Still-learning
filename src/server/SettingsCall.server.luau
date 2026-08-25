@@ -1,5 +1,6 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local Settings = require(ReplicatedStorage:WaitForChild("Settings"))
+-- Tell the type checker this is a ModuleScript to avoid unknown require errors
+local Settings = require(ReplicatedStorage:WaitForChild("Settings") :: ModuleScript)
 
 print(Settings.RoundTime)
 print(Settings.IntermissionTime)
