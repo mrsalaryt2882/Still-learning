@@ -19,4 +19,22 @@ GunEvent.OnServerEvent:Connect(function(player)
 	bodyVelocity.Parent = bullet
 
 	debris:AddItem(bullet, 2.5)
+
+	local function onBulletHit(projectile, hit)
+		if hit and hit.Parent then
+			local humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")
+			if humanoid then
+				if humanoid.parent == character then
+					projectile:Destroy()
+					return
+				end
+				humanoid:TakeDamage(10)
+			end
+		end
+		projectile:Destroy()
+	end
+
+	bullet.Touched:Connect(function(hit)
+		onBulletHit(bullet, hit)
+	end)
 end)
