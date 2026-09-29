@@ -8,6 +8,11 @@ local debris = game:GetService("Debris")
 GunEvent.OnServerEvent:Connect(function(player)
 	local character = player.Character
 	local rootPart = character:WaitForChild("HumanoidRootPart")
+	local _humanoid = character:WaitForChild("Humanoid")
+
+	if _humanoid.Health <= 0 then
+		return
+	end
 
 	local bullet = bulletSample:Clone()
 	bullet.Position = rootPart.Position + (rootPart.CFrame.LookVector * 2)
